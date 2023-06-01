@@ -66,120 +66,35 @@ public class SpotifyRepository {
         return artist;
     }
 
-//    public Album createAlbum(String title, String artistName) {
-//        Album album = new Album(title);
-//        albums.add(album);
-//
-//        albumSongMap.put(album, new ArrayList<>());
-//        Artist atst = null ;
-//
-//        boolean found = false;
-//
-//        for(Artist artist: artists){
-//            if(artist.getName().equals(artistName)){
-//                atst = artist;
-//                List<Album> oldlist = artistAlbumMap.get(atst);
-//                oldlist.add(album);
-//                artistAlbumMap.put(atst, oldlist);
-//                found = true;
-//                break;
-//            }
-//        }
-//        if(!found){
-//            atst = new Artist(artistName);
-//            List<Album> newlist = new ArrayList<>();
-//            newlist.add(album);
-//            artistAlbumMap.put(atst, newlist);
-//        }
-//
-//        return album;
-//    }
-
-    /////////////////////////////////
-
-
-
-//    public Album createAlbum(String title, String artistName) {
-//
-//
-////        albumSongMap.put(album, new ArrayList<>());
-//        Artist atst = null ;
-//
-////        boolean found = false;
-//
-//        for(Artist artist: artists){
-//            if(artist.getName().equals(artistName)){
-//                atst = artist;
-////                List<Album> oldlist = artistAlbumMap.get(atst);
-////                oldlist.add(album);
-////                artistAlbumMap.put(atst, oldlist);
-////                found = true;
-//                break;
-//            }
-//        }
-//        if(atst == null){
-//            atst = new Artist(artistName);
-//            Album album = new Album(title);
-//            albums.add(album);
-//            List<Album> newlist = new ArrayList<>();
-//            newlist.add(album);
-//            artistAlbumMap.put(atst, newlist);
-//            return album;
-//        }
-//        else {
-//            Album album = new Album(title);
-//            albums.add(album);
-//            List<Album> list = new ArrayList<>();
-//            if(list == null){
-//                list = new ArrayList<>();
-//            }
-//            list.add(album);
-//            artistAlbumMap.put(atst,list);
-//            return album;
-//        }
-//
-////        return album;
-//    }
-
-    ///////////////////
-
     public Album createAlbum(String title, String artistName) {
-        Artist artist1 = null;
-        for(Artist artist : artists) {
-            if (Objects.equals(artist.getName(), artistName)) {
-                artist1 = artist;
+        Album album = new Album(title);
+        albums.add(album);
+
+        albumSongMap.put(album, new ArrayList<>());
+        Artist atst = null ;
+
+        boolean found = false;
+
+        for(Artist artist: artists){
+            if(artist.getName().equals(artistName)){
+                atst = artist;
+                List<Album> oldlist = artistAlbumMap.get(atst);
+                oldlist.add(album);
+                artistAlbumMap.put(atst, oldlist);
+                found = true;
                 break;
             }
         }
-        if(artist1 == null){
-            artist1 = createArtist(artistName);
-
-            Album newAlbum = new Album(title);
-            newAlbum.setReleaseDate(new Date());
-
-            albums.add(newAlbum);
-
-            List<Album> list = new ArrayList<>();
-            list.add(newAlbum);
-
-            artistAlbumMap.put(artist1,list);
-            return newAlbum;
+        if(!found){
+            atst = new Artist(artistName);
+            List<Album> newlist = new ArrayList<>();
+            newlist.add(album);
+            artistAlbumMap.put(atst, newlist);
         }
-        else{
-            Album newAlbum = new Album(title);
-            newAlbum.setReleaseDate(new Date());
 
-            albums.add(newAlbum);
-
-            List<Album> list = new ArrayList<>();
-            if(list == null){
-                list = new ArrayList<>();
-            }
-            list.add(newAlbum);
-            artistAlbumMap.put(artist1,list);
-            return newAlbum;
-        }
+        return album;
     }
+
 
     public Song createSong(String title, String albumName, int length) throws Exception{
         boolean found = false;

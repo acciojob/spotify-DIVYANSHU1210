@@ -147,6 +147,17 @@ public class SpotifyRepository {
 
         creatorPlaylistMap.put(usr, playlist);
 
+        if(userPlaylistMap.containsKey(usr)){
+            List<Playlist> ulst = userPlaylistMap.get(usr);
+            ulst.add(playlist);
+            userPlaylistMap.put(usr, ulst);
+        }
+        else {
+            List<Playlist> ulst = new ArrayList<>();
+            ulst.add(playlist);
+            userPlaylistMap.put(usr, ulst);
+        }
+
         return playlist;
     }
 

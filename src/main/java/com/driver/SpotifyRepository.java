@@ -211,30 +211,32 @@ public class SpotifyRepository {
 
     public Playlist findPlaylist(String mobile, String playlistTitle) throws Exception {
         // FIND USER AND IF USER DOES NOT EXIST THROW ERROR
-        boolean found = false;
-        User usr = new User();
+
+        User usr = null;
         for(User user : users){
             if(user.getMobile().equals(mobile)){
                 usr = user;
-                found = true;
                 break;
             }
         }
-        if(!found)throw new Exception("User does not exist");
+        if(usr == null)throw new Exception("User does not exist");
 
 
         // FIND PLAYLIST AND IF it DOES NOT EXIST THROW ERROR
-        boolean found2 = false;
-        Playlist plst = new Playlist();
+
+        Playlist plst = null;
         for(Playlist playlist : playlists){
             if(playlist.getTitle().equals(playlistTitle)){
                 plst = playlist;
-                found2 = true;
                 break;
             }
         }
-        if(!found2)throw new Exception("Playlist does not exist");
+        if(plst == null)throw new Exception("Playlist does not exist");
 
+
+        if(creatorPlaylistMap.containsKey(usr)){
+            return plst;
+        }
 
         // NOW WE HAVE BOTH USER AND PLAYLIST
         List<User> playlstusers = playlistListenerMap.get(plst);

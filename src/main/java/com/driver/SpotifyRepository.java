@@ -248,6 +248,7 @@ public class SpotifyRepository {
         playlstusers.add(usr);
         playlistListenerMap.put(plst, playlstusers);
         List<Playlist>uplsts = userPlaylistMap.get(usr);
+        if(uplsts == null)uplsts = new ArrayList<>();
         uplsts.add(plst);
         userPlaylistMap.put(usr, uplsts);
         return plst;

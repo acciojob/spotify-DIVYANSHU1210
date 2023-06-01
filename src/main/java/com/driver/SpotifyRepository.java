@@ -78,7 +78,7 @@ public class SpotifyRepository {
         for(Artist artist: artists){
             if(artist.getName().equals(artistName)){
                 atst = artist;
-                List<Album> oldlist = artistAlbumMap.get(atst);
+                List<Album> oldlist = new ArrayList<>();
                 if(oldlist == null)oldlist = new ArrayList<>();
                 oldlist.add(album);
                 artistAlbumMap.put(atst, oldlist);

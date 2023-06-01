@@ -71,23 +71,23 @@ public class SpotifyRepository {
         albums.add(album);
 
         albumSongMap.put(album, new ArrayList<>());
-        Artist atst = new Artist() ;
-        Boolean found = false;
+        Artist atst = null ;
 
+        boolean found = false;
 
         for(Artist artist: artists){
             if(artist.getName().equals(artistName)){
                 atst = artist;
-                List oldlist = artistAlbumMap.get(atst);
+                List<Album> oldlist = artistAlbumMap.get(atst);
                 oldlist.add(album);
                 artistAlbumMap.put(atst, oldlist);
                 found = true;
                 break;
             }
         }
-        if(found == false){
+        if(!found){
             atst = new Artist(artistName);
-            List newlist = new ArrayList();
+            List<Album> newlist = new ArrayList<>();
             newlist.add(album);
             artistAlbumMap.put(atst, newlist);
         }
